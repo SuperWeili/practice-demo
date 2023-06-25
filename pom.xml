@@ -13,6 +13,7 @@
         <module>pom-parent-mgt-demo</module>
         <module>common-demo</module>
         <module>websocket-demo</module>
+        <module>juc-demo</module>
     </modules>
 
 </project>
