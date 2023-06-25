@@ -15,11 +15,15 @@ import java.util.List;
  * @version 1.0
  * @date 2023/2/15 20:30
  */
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class UserDto {
+public class UserDTO {
 
-	private List<User> users;
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

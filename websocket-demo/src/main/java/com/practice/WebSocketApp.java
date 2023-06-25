@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @SpringBootApplication
 @EnableScheduling
-@MapperScan("com.practice.infrastructure.po.mapper")
+@MapperScan("com.practice.infrastructure.mapper")
 public class WebSocketApp {
 
 	public static void main(String[] args) {

@@ -1,8 +1,9 @@
 package com.practice.presentation.controller;
 
 
+import com.practice.R;
 import com.practice.configuration.WebSocketServlet;
-import com.practice.domain.model.dto.UserDto;
+import com.practice.domain.model.UserData;
 import com.practice.presentation.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,8 +29,9 @@ public class UserController {
 	private WebSocketServlet webSocketServlet;
 
 	@PostMapping("/add")
-	public int addUser(@RequestBody UserDto dto) {
-		return service.insertUser(dto.getUsers());
+	public R<?> addUser(@RequestBody UserData userData) {
+		service.insertUser(userData.getUserDtoList());
+		return R.success();
 	}
 
 	@RequestMapping("/web")

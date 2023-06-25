@@ -1,8 +1,9 @@
-package com.practice.infrastructure.po.mapper;
+package com.practice.infrastructure.mapper;
 
 
 import com.practice.infrastructure.po.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-	int insertUser(List<User> users);
+	void insertUser(@Param("list") List<User> users);
 
 	int count();
 }

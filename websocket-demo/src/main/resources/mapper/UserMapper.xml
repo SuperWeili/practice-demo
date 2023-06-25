@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.practice.infrastructure.mapper.UserMapper" >
+    <resultMap id="resultMap" type="com.practice.infrastructure.po.User" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <insert id="insertUser">
+        insert into user (name) values  <foreach collection="list" separator="," item="users">
+        (#{users.name})
+    </foreach>
+
+    </insert>
+
+    <select id="findAll" resultMap="resultMap">
+        select <include refid="columnsName"/> from user
+    </select>
+
+    <select id="findByUserIds" resultMap="resultMap">
+        select <include refid="columnsName"/> from user where user_id in (
+        <foreach collection="list" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+
+    </select>
+    <select id="count" resultType="java.lang.Integer">
+        select count(*) from user
+    </select>
+
+    <sql id="columnsName">
+        id,user_id,name,age
+    </sql>
+</mapper>

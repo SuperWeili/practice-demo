@@ -55,13 +55,13 @@ spring:
 #      enabled: true
 
   # Mybatis配置
-#  mybatis:
-#    # 配置XML映射文件中指定的实体类别名路径
-#    type-aliases-package: com.my.*
-#    # 配置MyBatis的xml配置文件路径
-#    mapper-locations: classpath:mapper/**.xml
-#    # 开启驼峰uName自动映射到u_name
-#    map-underscore-to-camel-case: true
+mybatis:
+  # 配置XML映射文件中指定的实体类别名路径
+  type-aliases-package: com.practice.infrastructure.mapper.*
+  # 配置MyBatis的xml配置文件路径
+  mapper-locations: classpath:mapper/*.xml
+  # 开启驼峰uName自动映射到u_name
+  map-underscore-to-camel-case: true
 
   redis:
     database: 0

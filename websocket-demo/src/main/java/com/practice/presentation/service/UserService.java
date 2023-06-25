@@ -1,7 +1,7 @@
 package com.practice.presentation.service;
 
 
-import com.practice.infrastructure.po.User;
+import com.practice.domain.model.dto.UserDTO;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface UserService {
 
-	int insertUser(List<User> users);
+	void insertUser(List<UserDTO> users);
 
 	int count();
 }
