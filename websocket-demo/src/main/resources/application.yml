@@ -82,4 +82,15 @@ logging:
   level:
     com.sfdhl.modules.system.mapper: info
 #  config: classpath:logback.xml
+management:
+  server:
+    port: 4321
+  endpoints:
+    web:
+      base-path: /admin
+      exposure:
+        include: '*'
+
+
+
 
