@@ -13,7 +13,7 @@ import javax.annotation.PreDestroy;
  * @version 1.0
  * @date 2023/6/27 22:19
  */
-@Configuration//@Component
+//@Configuration//@Component
 	//springboot 初始化
 public class DefaultUserFactory implements UserFactory , InitializingBean , DisposableBean {
 
@@ -49,5 +49,10 @@ public class DefaultUserFactory implements UserFactory , InitializingBean , Disp
 
 	public void doDestroy() throws Exception {
 		System.out.println("自定义销毁方法doDestroy(): UserFactory 销毁中。。。");
+	}
+
+	@Override
+	protected void finalize() throws Throwable {
+		System.out.println("当前DefaultUserFactory 对象正在被回收");
 	}
 }
