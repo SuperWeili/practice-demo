@@ -16,6 +16,7 @@
         <module>juc-demo</module>
         <module>spring-bean-demo</module>
         <module>netty-demo</module>
+        <module>gc-demo</module>
 
     </modules>
 
