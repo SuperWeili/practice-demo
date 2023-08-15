@@ -10,6 +10,7 @@
     <modules>
         <module>dependency-lookup</module>
         <module>ioc-container-overview</module>
+        <module>dependency-source</module>
     </modules>
 
     <artifactId>spring-bean-demo</artifactId>
