@@ -17,6 +17,7 @@
         <module>spring-bean-demo</module>
         <module>netty-demo</module>
         <module>gc-demo</module>
+        <module>design-pattern-demo</module>
 
     </modules>
 

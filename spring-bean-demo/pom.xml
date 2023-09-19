@@ -11,6 +11,7 @@
         <module>dependency-lookup</module>
         <module>ioc-container-overview</module>
         <module>dependency-source</module>
+        <module>bean-lifecycle</module>
     </modules>
 
     <artifactId>spring-bean-demo</artifactId>

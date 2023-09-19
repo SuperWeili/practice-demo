@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @version 1.0
  * @date 2023/7/2 19:50
  */
-@Component
+//@Component
 public class User extends SuperUser{
 
 //	@Value("${name:User的name}")
