@@ -1,6 +1,6 @@
 package com.practice.design.bridging.notification;
 
-import com.practice.design.bridging.MsgSender;
+import com.practice.design.bridging.sender.MsgSender;
 
 /**
  * @author LW
@@ -11,9 +11,10 @@ public abstract class Notification {
 
 	protected MsgSender msgSender;
 
-	public Notification(MsgSender msgSender) {
+	public void setMsgSender(MsgSender msgSender) {
 		this.msgSender = msgSender;
 	}
+
 
 	public abstract void notify(String message);
 }

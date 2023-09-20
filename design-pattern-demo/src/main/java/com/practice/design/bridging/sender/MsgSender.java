@@ -1,4 +1,4 @@
-package com.practice.design.bridging;
+package com.practice.design.bridging.sender;
 
 /**
  * @author LW

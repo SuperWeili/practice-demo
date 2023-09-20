@@ -1,6 +1,6 @@
 package com.practice.design.bridging.sender;
 
-import com.practice.design.bridging.MsgSender;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -9,11 +9,15 @@ import java.util.List;
  * @version 1.0
  * @date 2023/9/19 22:06
  */
+@Service
 public class WeChatMsgSender implements MsgSender {
 	private List<String> accounts;
 
 	public WeChatMsgSender(List<String> accounts) {
 		this.accounts = accounts;
+	}
+
+	public WeChatMsgSender() {
 	}
 
 	@Override

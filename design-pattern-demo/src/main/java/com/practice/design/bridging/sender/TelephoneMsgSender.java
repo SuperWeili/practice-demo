@@ -1,6 +1,6 @@
 package com.practice.design.bridging.sender;
 
-import com.practice.design.bridging.MsgSender;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -9,12 +9,10 @@ import java.util.List;
  * @version 1.0
  * @date 2023/9/19 22:04
  */
+@Service
 public class TelephoneMsgSender implements MsgSender {
 	private List<String> phones;
 
-	public TelephoneMsgSender(List<String> phones) {
-		this.phones = phones;
-	}
 
 	@Override
 	public void send(String message) {

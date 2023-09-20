@@ -1,6 +1,6 @@
 package com.practice.design.bridging.sender;
 
-import com.practice.design.bridging.MsgSender;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import java.util.List;
  * @version 1.0
  * @date 2023/9/19 22:05
  */
+@Service
 public class EmailMsgSender implements MsgSender {
 	private List<String> emails;
 
