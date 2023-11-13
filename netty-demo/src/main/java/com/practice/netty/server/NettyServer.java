@@ -7,6 +7,12 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.LengthFieldPrepender;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
+
+import java.nio.charset.Charset;
 
 /**
  * @author LiWei
@@ -34,7 +40,7 @@ public class NettyServer {
             //  SO_BACKLOG 配置就是控制 A + B 队列总长度的参数，如果这两个队列都满了，那么 Netty 服务将不会再接收新的连接请求了
             serverBootstrap.option(ChannelOption.SO_BACKLOG, 1024)
                     /*
-                     * 当有客户端链路注册读写时间事件后，初始化Hander
+                     * 当有客户端链路注册读写时间事件后，初始化Handler
                      * 并将Handler加入管道中
                      */
                     .childHandler(new ChannelInitializer<SocketChannel>() {
@@ -45,7 +51,14 @@ public class NettyServer {
                              * 整个处理流向如下：HandlerContext-channelRead 读数据-->ServerHandler-channelRead
                              * 读取数据进行业务处理，最后将结果返回给客户端-->TailContext-write->HeadContext-write
                              */
+                            socketChannel.pipeline().addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
+                            // 把接受到的byteBuff数据包转换成string
+                            socketChannel.pipeline().addLast(new StringDecoder());
                             socketChannel.pipeline().addLast(new ServerHandler());
+
+                            // 业务逻辑处理handler
+                            socketChannel.pipeline().addLast(new LengthFieldPrepender(4, false));
+                            socketChannel.pipeline().addLast(new StringEncoder());
                         }
                     });
             // 同步绑定端口
@@ -57,7 +70,5 @@ public class NettyServer {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }
-
-
     }
 }

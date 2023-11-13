@@ -1,5 +1,7 @@
 package com.practice.netty.client;
 
+import com.alibaba.fastjson.JSONObject;
+import com.practice.netty.RequestFuture;
 import com.practice.netty.Response;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
@@ -17,6 +19,8 @@ import io.netty.util.concurrent.DefaultPromise;
 import io.netty.util.concurrent.Promise;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author LiWei
@@ -59,14 +63,21 @@ public class NettyClient {
                     // 业务逻辑处理handler
                     ch.pipeline().addLast(clientHandler);
                     ch.pipeline().addLast(new LengthFieldPrepender(4, false));
-                    ch.pipeline().addLast(new StringEncoder(Charset.defaultCharset()));
+                    ch.pipeline().addLast(new StringEncoder(StandardCharsets.UTF_8));
                 }
             });
             // 连接服务器
-            ChannelFuture sync = bootstrap.connect("127.0.0.1", 8080).sync();
-            // todo pdf28 未完成
-
-
+            ChannelFuture future = bootstrap.connect("127.0.0.1", 8080).sync();
+            // 构建request请求
+            RequestFuture requestFuture = new RequestFuture();
+            // 设置id自增张模式
+            AtomicInteger atomicInteger = new AtomicInteger(0);
+            requestFuture.setId(atomicInteger.getAndAdd(1));
+            requestFuture.setRequest("hello world");
+            String str = JSONObject.toJSONString(requestFuture);
+            future.channel().writeAndFlush(str);
+            Response response = promise.get();
+            System.out.println(JSONObject.toJSONString(response));
         } catch (Exception e) {
             e.printStackTrace();
         }

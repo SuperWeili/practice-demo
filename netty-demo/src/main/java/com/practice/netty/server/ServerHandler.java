@@ -1,5 +1,8 @@
 package com.practice.netty.server;
 
+import com.alibaba.fastjson.JSONObject;
+import com.practice.netty.RequestFuture;
+import com.practice.netty.Response;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -21,10 +24,18 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        if (msg instanceof ByteBuf){
-            // ByteBuf的toString()方法将二进制转换字符串，utf-8
-            System.out.println(((ByteBuf) msg).toString(Charset.defaultCharset()));
-        }
-        ctx.channel().writeAndFlush("msg has received");
+//        if (msg instanceof ByteBuf){
+//            // ByteBuf的toString()方法将二进制转换字符串，utf-8
+//            System.out.println(((ByteBuf) msg).toString(Charset.defaultCharset()));
+//        }
+//        ctx.channel().writeAndFlush("msg has received！");
+        RequestFuture requestFuture = JSONObject.parseObject(msg.toString(), RequestFuture.class);
+        long id = requestFuture.getId();
+        System.out.println("请求信息为==="+msg.toString());
+        Response response = new Response();
+        response.setId(id);
+        response.setResult("服务器响应ok");
+        // 相应结果返回给客户端
+        ctx.channel().writeAndFlush(JSONObject.toJSONString(response));
     }
 }

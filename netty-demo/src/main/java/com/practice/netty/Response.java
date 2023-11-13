@@ -11,4 +11,12 @@ import lombok.Data;
 public class Response {
     private long id;
     private Object result;
+
+    @Override
+    public String toString() {
+        return com.google.common.base.MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("result", result)
+                .toString();
+    }
 }
