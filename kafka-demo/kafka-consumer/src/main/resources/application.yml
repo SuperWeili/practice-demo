@@ -1,0 +1,16 @@
+spring:
+  kafka:
+    bootstrap-servers: 58.87.99.162:9092
+    consumer:
+      group-id: my-group
+      auto-offset-reset: latest
+      enable-auto-commit: false
+      auto-commit-interval: 100
+      max-poll-records: 20
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+my:
+  topic: my-topic
+  group: my-group
+server:
+  port: 1111
