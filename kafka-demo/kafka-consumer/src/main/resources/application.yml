@@ -10,7 +10,6 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 my:
-  topic: my-topic
-  group: my-group
+  topic: testTopic
 server:
   port: 1111
