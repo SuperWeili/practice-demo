@@ -49,7 +49,9 @@ public class AbstractServiceRegistry<TYPE extends Enum<TYPE>, SERVICE extends Wi
 				TYPE type = service.getType();
 				if (this.typeClz.isInstance(type) && this.serviceClz.isInstance(service)) {
 					if (this.registry.containsKey(type)) {
-						Preconditions.checkState(false, "service of type %s already registered, existing service %s, conflicting service %s", type, ((WithType) this.registry.get(type)).getClass().getName(), service.getClass().getName());
+						Preconditions.checkState(false, "service of type %s already registered," +
+										" existing service %s, conflicting service %s", type,
+								((WithType) this.registry.get(type)).getClass().getName(), service.getClass().getName());
 					}
 
 					this.registry.put(type, service);
