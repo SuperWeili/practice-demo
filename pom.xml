@@ -19,6 +19,7 @@
         <module>gc-demo</module>
         <module>design-pattern-demo</module>
         <module>kafka-demo</module>
+        <module>algorithm-demo</module>
 
     </modules>
 
